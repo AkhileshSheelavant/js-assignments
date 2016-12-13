@@ -33,7 +33,17 @@
  *
  */
 function* get99BottlesOfBeer() {
-    throw new Error('Not implemented');
+    var bottles=99;
+    while(bottles>1)
+    {
+        yield ""+bottles+" bottles of beer on the wall, "+bottles+" bottles of beer.";
+        yield "Take one down and pass it around, "+(--bottles)+" bottles of beer on the wall.";
+    }
+    yield ""+bottles+" bottle of beer on the wall, "+bottles+" bottle of beer."
+    yield 'Take one down and pass it around, no more bottles of beer on the wall.';
+    yield 'No more bottles of beer on the wall, no more bottles of beer.';
+    yield 'Go to the store and buy some more, 99 bottles of beer on the wall.';
+    // throw new Error('Not implemented');
 }
 
 
@@ -47,10 +57,19 @@ function* get99BottlesOfBeer() {
  *
  */
 function* getFibonacciSequence() {
-    throw new Error('Not implemented');
+    var fib1=0;
+    yield fib1;
+    var fib2=1;
+    yield fib2;
+    while(true)
+    {
+        var fib3=fib1+fib2;
+        fib1=fib2;
+        fib2=fib3;
+        yield fib3;
+    }
+//    throw new Error('Not implemented');
 }
-
-
 /**
  * Traverses a tree using the depth-first strategy
  * See details: https://en.wikipedia.org/wiki/Depth-first_search
@@ -81,10 +100,22 @@ function* getFibonacciSequence() {
  *  depthTraversalTree(node1) => node1, node2, node3, node4, node5, node6, node7, node8
  *
  */
+var arr=[];
 function* depthTraversalTree(root) {
+    // yield root;
+    // while(true){
+    //     if(root.hasOwnProperty('children' && root.children.length !=0)){
+    //         arr.splice(0,0,root.children);
+    //         root=arr.shift();
+    //         yield root;
+    //     }else{
+    //         if(myArr.length==0) break;
+    //         root=myArr.shift();
+    //         yield root;
+    //     }
+    // }
     throw new Error('Not implemented');
 }
-
 
 /**
  * Traverses a tree using the breadth-first strategy
@@ -107,7 +138,23 @@ function* depthTraversalTree(root) {
  *           8
  *
  */
+var myArr=[];
 function* breadthTraversalTree(root) {
+    // yield root;
+    // while(true){
+    //     if(root.hasOwnProperty('children') && root.children.length!=0){
+    //         myArr.push(function (){
+    //             root.children.forEach(node in root.children)
+    //             return node;
+    //         });
+    //         root=myArr.shift();
+    //         yield root;
+    //     }else{
+    //         if(myArr.length==0) break;
+    //         root=myArr.shift();
+    //         yield root;
+    //     }
+    // }
     throw new Error('Not implemented');
 }
 
@@ -126,9 +173,33 @@ function* breadthTraversalTree(root) {
  *   [ 1, 3, 5, ... ], [ -1 ] => [ -1, 1, 3, 5, ...]
  */
 function* mergeSortedSequences(source1, source2) {
+    // var s1=source1.next;
+    // var s2=source2.next;
+    //
+    // while(s1&&s2) {
+    //     if (s1 < s2) {
+    //         yield s1;
+    //         s1=source1.next;
+    //     }
+    //     else{
+    //         yield s2;
+    //         s2=source2.next;
+    //     }
+    // }
+    // if(s2) {
+    //     while(s2) {
+    //         yield s2;
+    //         s2=source2.next;
+    //     }
+    // }
+    // if(s1) {
+    //     while(s1) {
+    //         yield s1;
+    //         s1=source1.next;
+    //     }
+    // }
     throw new Error('Not implemented');
 }
-
 
 module.exports = {
     get99BottlesOfBeer: get99BottlesOfBeer,

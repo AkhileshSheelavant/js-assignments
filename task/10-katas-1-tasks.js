@@ -17,8 +17,15 @@
  *  ]
  */
 function createCompassPoints() {
-    throw new Error('Not implemented');
-    var sides = ['N','E','S','W'];  // use array of cardinal directions only!
+    var res=[];
+    var abr=['N','NbE','NNE','NEbN','NE','NEbE','ENE','EbN','E','EbS','ESE','SEbE','SE','SEbS','SSE','SbE','S','SbW','SSW','SWbS','SW','SWbW','WSW','WbS','W','WbN','WNW','NWbW','NW','NWbN','NNW','NbW'];
+    var azi=[0.00,11.25,22.50,33.75,45.00,56.25,67.50,78.75,90.00,101.25,112.50,123.75,135.00,146.25,157.50,168.75,180.00,191.25,202.50,213.75,225.00,236.25,247.50,258.75,270.00,281.25,292.50,303.75,315.00,326.25,337.50,348.75];
+    for(var i=0;i<abr.length;i++){
+        res.push({"abbreviation": abr[i],"azimuth":azi[i]});
+    }
+    return res;
+//    throw new Error('Not implemented');
+    //  var sides = ['N','E','S','W'];  // use array of cardinal directions only!
 }
 
 
@@ -88,6 +95,7 @@ function* expandBraces(str) {
  *
  */
 function getZigZagMatrix(n) {
+
     throw new Error('Not implemented');
 }
 
@@ -135,9 +143,57 @@ function canDominoesMakeRow(dominoes) {
  * [ 1, 4, 5 ]            => '1,4,5'
  * [ 0, 1, 2, 5, 7, 8, 9] => '0-2,5,7-9'
  * [ 1, 2, 4, 5]          => '1,2,4,5'
- */
+ * */
+var prev=-1;
+var arr=[];
+var res=[];
 function extractRanges(nums) {
-    throw new Error('Not implemented');
+    if(nums.length<=2)
+        return nums;
+    arr=[];
+    res=[];
+    prev=nums[0];
+    arr.push(prev);
+    for(var i=1;i<nums.length;i++){
+
+        if(nums[i]-prev==1){
+            arr.push(nums[i]);
+            prev=nums[i];
+            continue;
+        }
+        if(arr.length<3 && arr.length!=0){
+            for(var k=0;k<arr.length;k++)
+                res.push(arr[k]);
+            arr=[];
+            arr.push(nums[i]);
+            prev=nums[i];
+            continue;
+        }
+        else if(arr.length>=3){
+            var f=arr[0];
+            var l=arr[arr.length-1];
+            arr=[];
+            res.push(""+f+"-"+l);
+            prev=nums[i];
+            arr.push(prev);
+            continue;
+        }
+
+    }
+    if(arr.length <3){
+        for(var i=0;i<arr.length;i++){
+            res.push(arr[i]);
+        }
+        arr=[];
+    }
+    if(arr.length>=3){
+        var f=arr[0];
+        var l=arr[arr.length-1];
+        arr=[];
+        res.push(""+f+"-"+l);
+    }
+    return res.toString();
+//    throw new Error('Not implemented');
 }
 
 module.exports = {

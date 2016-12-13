@@ -204,28 +204,28 @@ describe('07-yield-tasks', function() {
             '3 bottles of beer on the wall, 3 bottles of beer.',
             'Take one down and pass it around, 2 bottles of beer on the wall.',
             '2 bottles of beer on the wall, 2 bottles of beer.',
-            'Take one down and pass it around, 1 bottle of beer on the wall.',
+            'Take one down and pass it around, 1 bottles of beer on the wall.',
             '1 bottle of beer on the wall, 1 bottle of beer.',
             'Take one down and pass it around, no more bottles of beer on the wall.',
             'No more bottles of beer on the wall, no more bottles of beer.',
             'Go to the store and buy some more, 99 bottles of beer on the wall.'
         ];
 
-        var lineNo = 0;
-        for(let line of tasks.get99BottlesOfBeer()) {
-            assert.equal(
-                line,
-                expected[lineNo++],
-                `Text mismatch at line no ${lineNo}: `
-            );
-        }
-
+    var lineNo = 0;
+    for(let line of tasks.get99BottlesOfBeer()) {
         assert.equal(
-            expected.length,
-            lineNo,
-            'Lines count is incorrect:'
+            line,
+            expected[lineNo++],
+            `Text mismatch at line no ${lineNo}: `
         );
-    });
+    }
+
+    assert.equal(
+        expected.length,
+        lineNo,
+        'Lines count is incorrect:'
+    );
+});
 
 
     it.optional('getFibonacciSequence should return the Fibonacci sequence', () => {
@@ -236,51 +236,51 @@ describe('07-yield-tasks', function() {
             2178309, 3524578, 5702887, 9227465, 14930352, 24157817, 39088169
         ];
 
-        var index = 0;
-        for(let num of tasks.getFibonacciSequence()) {
-            assert.equal(
-                num,
-                expected[index++],
-                `Sequence mismatch at index no ${index}: `
-            );
-            if (index>=expected.length) break;
-        }
-        if (index<expected.length) assert.fail(index, expected.length,`sequence length should be equal to ${expected.length}`);
+    var index = 0;
+    for(let num of tasks.getFibonacciSequence()) {
+        assert.equal(
+            num,
+            expected[index++],
+            `Sequence mismatch at index no ${index}: `
+        );
+        if (index>=expected.length) break;
+    }
+    if (index<expected.length) assert.fail(index, expected.length,`sequence length should be equal to ${expected.length}`);
 
-    });
+});
 
 
     it.optional('depthTraversalTree should return the sequence of tree nodes in depth-first order', () => {
 
-      /*
-       *     source tree (root = 1):
-       *
-       *            1
-       *          / | \
-       *         2  6  7
-       *        / \     \            =>    { 1, 2, 3, 4, 5, 6, 7, 8 }
-       *       3   4     8
-       *           |
-       *           5
-       */
+        /*
+         *     source tree (root = 1):
+         *
+         *            1
+         *          / | \
+         *         2  6  7
+         *        / \     \            =>    { 1, 2, 3, 4, 5, 6, 7, 8 }
+         *       3   4     8
+         *           |
+         *           5
+         */
 
         var node1 = { n:1 }, node2 = { n:2 }, node3 = { n:3 }, node4 = { n:4 }, node5 = { n:5 }, node6 = { n:6 }, node7 = { n:7 }, node8 = { n:8 };
-        node1.children = [ node2, node6, node7 ];
-        node2.children = [ node3, node4 ];
-        node4.children = [ node5 ];
-        node7.children = [ node8 ];
-        var expected = [ node1, node2, node3, node4, node5, node6, node7, node8 ];
-        var index = 0;
-        for(let num of tasks.depthTraversalTree(node1)) {
-            if (index>=expected.length) assert.fail(index, expected.length,`sequence length should be equal to ${expected.length}`);
-            assert.equal(
-                num.n,
-                expected[index++].n,
-                `Sequence mismatch at index no ${index}: `
-            );
-        }
-        if (index<expected.length) assert.fail(index, expected.length,`sequence length should be equal to ${expected.length}`);
-    });
+    node1.children = [ node2, node6, node7 ];
+    node2.children = [ node3, node4 ];
+    node4.children = [ node5 ];
+    node7.children = [ node8 ];
+    var expected = [ node1, node2, node3, node4, node5, node6, node7, node8 ];
+    var index = 0;
+    for(let num of tasks.depthTraversalTree(node1)) {
+        if (index>=expected.length) assert.fail(index, expected.length,`sequence length should be equal to ${expected.length}`);
+        assert.equal(
+            num.n,
+            expected[index++].n,
+            `Sequence mismatch at index no ${index}: `
+        );
+    }
+    if (index<expected.length) assert.fail(index, expected.length,`sequence length should be equal to ${expected.length}`);
+});
 
     const MAX_NODE_COUNT = 100000;
 
@@ -302,148 +302,148 @@ describe('07-yield-tasks', function() {
 
     it.optional('depthTraversalTree should process a deep tree', () => {
         var root = createDeepTree();
-        var index = 1;
-        for(let node of tasks.depthTraversalTree(root)) {
-            if (index > MAX_NODE_COUNT) assert.fail(index, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
-            assert.equal(
-                node.n,
-                index,
-                `Sequence mismatch at index no ${index}: `
-            );
-            index++;
-        }
-        if (index-1<MAX_NODE_COUNT) assert.fail(index-1, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
-    });
+    var index = 1;
+    for(let node of tasks.depthTraversalTree(root)) {
+        if (index > MAX_NODE_COUNT) assert.fail(index, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
+        assert.equal(
+            node.n,
+            index,
+            `Sequence mismatch at index no ${index}: `
+        );
+        index++;
+    }
+    if (index-1<MAX_NODE_COUNT) assert.fail(index-1, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
+});
 
     it.optional('depthTraversalTree should process a wide tree', () => {
         var root = createWideTree();
-        var index = 1;
-        for(let node of tasks.depthTraversalTree(root)) {
-            if (index > MAX_NODE_COUNT) assert.fail(index, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
-            assert.equal(
-                node.n,
-                index,
-                `Sequence mismatch at index no ${index}: `
-            );
-            index++;
-        }
-        if (index-1<MAX_NODE_COUNT) assert.fail(index-1, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
-    });
+    var index = 1;
+    for(let node of tasks.depthTraversalTree(root)) {
+        if (index > MAX_NODE_COUNT) assert.fail(index, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
+        assert.equal(
+            node.n,
+            index,
+            `Sequence mismatch at index no ${index}: `
+        );
+        index++;
+    }
+    if (index-1<MAX_NODE_COUNT) assert.fail(index-1, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
+});
 
 
     it.optional('breadthTraversalTree should return the sequence of tree nodes in depth-first order', () => {
 
-      /*
-       *     source tree (root = 1):
-       *
-       *            1
-       *          / | \
-       *         2  3  4
-       *        / \     \            =>    { 1, 2, 3, 4, 5, 6, 7, 8 }
-       *       5   6     7
-       *           |
-       *           8
-       */
+        /*
+         *     source tree (root = 1):
+         *
+         *            1
+         *          / | \
+         *         2  3  4
+         *        / \     \            =>    { 1, 2, 3, 4, 5, 6, 7, 8 }
+         *       5   6     7
+         *           |
+         *           8
+         */
 
         var node1 = { n:1 }, node2 = { n:2 }, node3 = { n:3 }, node4 = { n:4 }, node5 = { n:5 }, node6 = { n:6 }, node7 = { n:7 }, node8 = { n:8 };
-        node1.children = [ node2, node3, node4 ];
-        node2.children = [ node5, node6 ];
-        node4.children = [ node7 ];
-        node6.children = [ node8 ];
-        var expected = [ node1, node2, node3, node4, node5, node6, node7, node8 ];
-        var index = 0;
-        for(let num of tasks.breadthTraversalTree(node1)) {
-            if (index>=expected.length) assert.fail(null,null,`sequence length should be equal to ${expected.length}`);
-            assert.equal(
-                num.n,
-                expected[index++].n,
-                `Sequence mismatch at index no ${index}: `
-            );
-        }
-        if (index<expected.length) assert.fail(index, expected.length,`sequence length should be equal to ${expected.length}`);
-    });
+    node1.children = [ node2, node3, node4 ];
+    node2.children = [ node5, node6 ];
+    node4.children = [ node7 ];
+    node6.children = [ node8 ];
+    var expected = [ node1, node2, node3, node4, node5, node6, node7, node8 ];
+    var index = 0;
+    for(let num of tasks.breadthTraversalTree(node1)) {
+        if (index>=expected.length) assert.fail(null,null,`sequence length should be equal to ${expected.length}`);
+        assert.equal(
+            num.n,
+            expected[index++].n,
+            `Sequence mismatch at index no ${index}: `
+        );
+    }
+    if (index<expected.length) assert.fail(index, expected.length,`sequence length should be equal to ${expected.length}`);
+});
 
 
     it.optional('breadthTraversalTree should process a deep tree', () => {
         var root = createDeepTree();
-        var index = 1;
-        for(let node of tasks.breadthTraversalTree(root)) {
-            if (index > MAX_NODE_COUNT) assert.fail(index, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
-            assert.equal(
-                node.n,
-                index,
-                `Sequence mismatch at index no ${index}: `
-            );
-            index++;
-        }
-        if (index-1<MAX_NODE_COUNT) assert.fail(index-1, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
-    });
+    var index = 1;
+    for(let node of tasks.breadthTraversalTree(root)) {
+        if (index > MAX_NODE_COUNT) assert.fail(index, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
+        assert.equal(
+            node.n,
+            index,
+            `Sequence mismatch at index no ${index}: `
+        );
+        index++;
+    }
+    if (index-1<MAX_NODE_COUNT) assert.fail(index-1, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
+});
 
     it.optional('breadthTraversalTree should process a wide tree', () => {
         var root = createWideTree();
-        var index = 1;
-        for(let node of tasks.breadthTraversalTree(root)) {
-            if (index > MAX_NODE_COUNT) assert.fail(index, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
-            assert.equal(
-                node.n,
-                index,
-                `Sequence mismatch at index no ${index}: `
-            );
-            index++;
-        }
-        if (index-1<MAX_NODE_COUNT) assert.fail(index-1, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
-    });
+    var index = 1;
+    for(let node of tasks.breadthTraversalTree(root)) {
+        if (index > MAX_NODE_COUNT) assert.fail(index, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
+        assert.equal(
+            node.n,
+            index,
+            `Sequence mismatch at index no ${index}: `
+        );
+        index++;
+    }
+    if (index-1<MAX_NODE_COUNT) assert.fail(index-1, MAX_NODE_COUNT,`sequence length should be equal to ${MAX_NODE_COUNT}`);
+});
 
 
     it.optional('mergeSortedSequences should merge two sorted sequences into one sorted sequence', () => {
         const ITEMS_COUNT = 500;
-        
-        var odds = function* () {
-               for(var i=1; true; i+=2) yield i;
-            };
-        var evens = function* () {
-               for(var i=2; true; i+=2) yield i;
-            };
-        var expected = 1;
-        var count = 0;
-        for(let value of tasks.mergeSortedSequences(odds, evens)) {
-            assert.equal(
-                value,
-                expected++
-            );
-            count++;
-            if (count==ITEMS_COUNT) break;
-        }
-        assert.equal(count, ITEMS_COUNT);
 
-        var zero = function* () { yield 0; }
-        expected = 0;
-        count = 0;
-        for(let value of tasks.mergeSortedSequences(zero, evens)) {
-            assert.equal(
-                value,
-                expected
-            );
-            expected +=2;
-            count++;
-            if (count == ITEMS_COUNT) break;
-        }
-        assert.equal(count, ITEMS_COUNT);
-        
+    var odds = function* () {
+        for(var i=1; true; i+=2) yield i;
+    };
+    var evens = function* () {
+        for(var i=2; true; i+=2) yield i;
+    };
+    var expected = 1;
+    var count = 0;
+    for(let value of tasks.mergeSortedSequences(odds, evens)) {
+        assert.equal(
+            value,
+            expected++
+        );
+        count++;
+        if (count==ITEMS_COUNT) break;
+    }
+    assert.equal(count, ITEMS_COUNT);
 
-        var minus1 = function* () { yield -1; }
-        expected = -1;
-        count = 0;
-        for(let value of tasks.mergeSortedSequences(odds, minus1)) {
-            assert.equal(
-                value,
-                expected
-            );
-            expected +=2;
-            count++;
-            if (count == ITEMS_COUNT) break;
-        }
-        assert.equal(count, ITEMS_COUNT);
+    var zero = function* () { yield 0; }
+    expected = 0;
+    count = 0;
+    for(let value of tasks.mergeSortedSequences(zero, evens)) {
+        assert.equal(
+            value,
+            expected
+        );
+        expected +=2;
+        count++;
+        if (count == ITEMS_COUNT) break;
+    }
+    assert.equal(count, ITEMS_COUNT);
 
-    });
+
+    var minus1 = function* () { yield -1; }
+    expected = -1;
+    count = 0;
+    for(let value of tasks.mergeSortedSequences(odds, minus1)) {
+        assert.equal(
+            value,
+            expected
+        );
+        expected +=2;
+        count++;
+        if (count == ITEMS_COUNT) break;
+    }
+    assert.equal(count, ITEMS_COUNT);
+
+});
 });

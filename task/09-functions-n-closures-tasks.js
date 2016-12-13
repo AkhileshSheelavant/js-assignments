@@ -26,7 +26,10 @@
  *
  */
 function getComposition(f,g) {
-    throw new Error('Not implemented');
+    return function (x) {
+        return f(g(x));
+    };
+//    throw new Error('Not implemented');
 }
 
 
@@ -47,7 +50,10 @@ function getComposition(f,g) {
  *
  */
 function getPowerFunction(exponent) {
-    throw new Error('Not implemented');
+    return function (ex) {
+        return Math.pow(ex,exponent);
+    }
+//    throw new Error('Not implemented');
 }
 
 
@@ -150,6 +156,7 @@ function logger(func, logFunc) {
  *   partialUsingArguments(fn, 'a','b','c','d')() => 'abcd'
  */
 function partialUsingArguments(fn) {
+
     throw new Error('Not implemented');
 }
 
@@ -173,8 +180,6 @@ function partialUsingArguments(fn) {
 function getIdGeneratorFunction(startFrom) {
     throw new Error('Not implemented');
 }
-
-
 module.exports = {
     getComposition: getComposition,
     getPowerFunction: getPowerFunction,

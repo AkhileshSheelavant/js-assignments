@@ -100,9 +100,13 @@ const PokerRank = {
 }
 
 function getPokerHandRank(hand) {
+    if(hand.length<5)
+        return -1;
     throw new Error('Not implemented');
 }
+function checkStraightFlush(ar) {
 
+}
 
 /**
  * Returns the rectangles sequence of specified figure.
@@ -110,10 +114,10 @@ function getPokerHandRank(hand) {
  * The task is to break the figure in the rectangles it is made of.
  *
  * NOTE: The order of rectanles does not matter.
- * 
+ *
  * @param {string} figure
  * @return {Iterable.<string>} decomposition to basic parts
- * 
+ *
  * @example
  *
  *    '+------------+\n'+
@@ -135,7 +139,7 @@ function getPokerHandRank(hand) {
  *    '+-------------+\n'
  */
 function* getFigureRectangles(figure) {
-   throw new Error('Not implemented');
+    throw new Error('Not implemented');
 }
 
 
